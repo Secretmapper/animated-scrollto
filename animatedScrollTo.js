@@ -8,7 +8,7 @@
         return -c/2 * (t*(t-2) - 1) + b;
     };
 
-    var animatedScrollTo = function (element, to, duration, callback) {
+    var animatedScrollTo = function (element, to, duration, callback, cancel) {
         var start = element.scrollTop,
             change = to - start,
             animationStart = +new Date();
@@ -27,6 +27,7 @@
                     lastpos = val;
                     element.scrollTop = val;
                 } else {
+                    if (cancel) { cancel(); }
                     animating = false;
                 }
             } else {
